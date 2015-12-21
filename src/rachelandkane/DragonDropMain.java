@@ -180,9 +180,6 @@ public class DragonDropMain {
 	}
 
     /**
-	 * 
-	 * @param tabItem
-	 * @param selection
 	 * @return Number of selections made
 	 */
 	public static int markSelections(TabItem tabItem, String selection) {
@@ -190,7 +187,7 @@ public class DragonDropMain {
 		StyledText styledText = (StyledText) tabItem.getControl();
 		int searchStart = 0;
 		int position = styledText.getText().toLowerCase().indexOf(lowercase, searchStart);
-		List<StyleRange> selections = new ArrayList<StyleRange>();
+		List<StyleRange> selections = new ArrayList<>();
 		while (position != -1) {
 			selections.add(new StyleRange(position, lowercase.length(), null, yellow));
 			position = styledText.getText().toLowerCase().indexOf(lowercase, position + 1);
@@ -256,7 +253,6 @@ public class DragonDropMain {
 
     /**
      * Add the last tab; clicking on it will enable user to create a new section
-     * @return
      */
     private void addLastTabItem() {
         TabItem tabItem = new TabItem(tabFolder, SWT.BORDER);
@@ -265,27 +261,9 @@ public class DragonDropMain {
             public void widgetSelected(org.eclipse.swt.events.SelectionEvent event) {
                 TabItem selectedTabItem = (TabItem)event.item;
                 if (selectedTabItem.getText().equals("+")) {
-                    //String newTabName = JOptionPane.showInputDialog("Enter the new tab name");
-                    //selectedTabItem.setText(newTabName);
-                    //String newTabName = JOptionPane.showInputDialog("Enter the new tab name");
-
-//                    JOptionPane jOptionPane = new JOptionPane();
-//                    JDialog dialog = jOptionPane.createDialog("Enter the new tab name");
-//                    dialog.setAlwaysOnTop(true);
-//                    dialog.setVisible(true);
-
-                    //question();
-
-
-                    //String newTabName = dialog.get
-                    //String newTabName = JOptionPane.showInputDialog(frame, "Enter the new tab name", "now", JOptionPane.WARNING_MESSAGE);
                     frame.setVisible(false);
 					Thread thread = new Thread(new StringDialogThread());
                     thread.start();
-                  // String newTabName = JOptionPane.showInputDialog(frame, "Enter the new tab name");
-                  // selectedTabItem.setText(newTabName);
-                   // TabItem newTabItem = new TabItem(tabFolder, SWT.BORDER);
-                   // newTabItem.setText("+");
                 }
             }
         });
@@ -309,25 +287,6 @@ public class DragonDropMain {
 			public void mouseDown(MouseEvent arg0) {
 //				log.info("Mouse down: " + styledText.getCaretOffset());
 				mouseDownStart = styledText.getCaretOffset();
-//				int lineStart = styledText.getCaretOffset();
-//				int lineEnd = styledText.getCaretOffset();
-//				while (lineStart > 0 && !styledText.getText(lineStart, lineEnd).startsWith(newline))
-//					lineStart--;
-//
-//				// Adjustments
-//				if (styledText.getText(lineStart, lineEnd).startsWith(newline))
-//					lineStart += newlineLength;
-//
-//				// styledText.getText(lineStart, end)
-//				lineEnd = styledText.getText().indexOf(newline, lineEnd);
-//
-//				String lineSelected = styledText.getText(lineStart, lineEnd).trim();
-//				;
-//				log.info("Line Selected is: " + lineSelected);
-//
-//				cb.setContents(new Object[] { lineSelected }, new Transfer[] { textTransfer });
-//
-//				styledText.setSelection(lineStart, lineEnd);
 			}
 
 			/**
@@ -372,14 +331,7 @@ public class DragonDropMain {
 		source.setTransfer(types);
 		source.addDragListener(new DragSourceListener() {
 			public void dragStart(DragSourceEvent e) {
-				// Only start the drag if there is actually text in the
-				// label - this text will be what is dropped on the target.
-				// if (label.getText().length() == 0) {
-				// event.doit = false;
-				// }
-	//			log.info("dragStart: ");
-				// styledText.setSelection(lastSelectedItems);
-			};
+			}
 
 			public void dragSetData(DragSourceEvent event) {
 				// A drop has been performed, so provide the data of the
@@ -402,15 +354,7 @@ public class DragonDropMain {
 
 	}
 
-	// http://premierspasenjava.blogspot.co.uk/2012/04/check-if-application-is-already-running.html
-//	private final void onStart() {
-//		Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
-//		prefs.put(ISRUNNING, "true");
-//	}
-//
-	private final void quitApplication() {
-//		Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
-//		prefs.put(ISRUNNING, "false");
+	protected final void quitApplication() {
 		System.exit(0);
 	}
 
@@ -434,13 +378,7 @@ public class DragonDropMain {
             log.severe("Problem saving to " + filePath + ": " + ex.getMessage());
         }
     }
-//
-//	public boolean isRunning() {
-//		Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
-//		return prefs.get(ISRUNNING, null) != null ? Boolean.valueOf(prefs.get(ISRUNNING, null)) : false;
-//	}
 
-	
 	// First argument is text filename
 	// Second argument is external file editor that will launch editable version
 	// of filename
